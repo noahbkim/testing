@@ -1,0 +1,72 @@
+$padding: 16px;
+
+form {
+  font-weight: inherit;
+}
+
+input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+  padding: 6px 0;
+  font-family: $font;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+input[type=radio] {
+  width: auto;
+}
+
+label {
+  display: block;
+  color: gray;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.date {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  input {
+    width: 1px;
+  }
+
+  #year { flex-grow: 0.5; }
+  #month, #date {
+    margin-left: 8px;
+    flex-grow: 0.25;
+  }
+}
+
+#register {
+
+  #name, #about, #age-sex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  #age-sex {
+    align-items: flex-end;
+
+    #age {
+      flex-grow: 1;
+    }
+
+    #female {
+      margin-left: 12px;
+    }
+  }
+
+  & > div {
+    padding-bottom: 12px;
+  }
+
+  .half {
+    width: calc(50% - #{$padding} / 2);
+  }
+}

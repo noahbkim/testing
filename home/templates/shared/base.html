@@ -1,0 +1,37 @@
+{% load sass_tags %}
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="USC Face Study Testing Site">
+    <meta about="Register and take various face recognition tests for the USC Image Understanding Lab">
+    <title>USC Face Study</title>
+    <link href="{% sass_src "css/base.scss" %}" rel="stylesheet" type="text/css">
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    {% block navigation %}
+    <div id="navigation">
+      <span class="red">USC Face Study</span>
+      <span>About</span>
+      <span>Contact</span>
+      <div class="right">
+        {% if user.is_staff %}
+        <span><a>Dashboard</a></span>
+        <span><a>Logout</a></span>
+        {% elif user.is_authenticated%}
+        <span><a>Tests</a></span>
+        <span><a>Account</a></span>
+        <span><a>Logout</a></span>
+        {% else %}
+        <span><a href="{% url "home:register" %}">Register</a></span>
+        <span><a>Login</a></span>
+        {% endif %}
+      </div>
+    </div>
+    {% endblock %}
+    <div id="content">
+      {% block content %}{% endblock %}
+    </div>
+  </body>
+</html>

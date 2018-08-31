@@ -1,0 +1,40 @@
+{% extends "shared/base.html" %}
+
+{% block content %}
+<h1>Register for the Study</h1>
+<p>
+  To register for the USC face study you will be required to provide your full name and your email.
+  Once you've registered and confirmed your email you'll be able to start taking the tests.
+  We'll send instructions on how to view your results to the email you provide once you've finished.
+</p>
+<br>
+<form id="register">
+  <div id="name">
+    <div class="half">
+      <input id="first_name" name="first_name" type="text" placeholder="First">
+      <label for="first_name">First name</label>
+    </div>
+    <div class="half">
+      <input id="last_name" name="last_name" type="text" placeholder="Last">
+      <label for="last_name">Last name</label>
+    </div>
+  </div>
+  <div id="about">
+    <div class="half">
+      <input id="email" name="email" type="text" placeholder="me@example.com">
+      <label for="email">Email</label>
+    </div>
+    <div id="age-sex" class="half">
+      <div id="age">
+        <div class="date">
+          <input id="year" name="year" type="text" placeholder="YYYY">
+          <input id="month" name="month" type="text" placeholder="MM">
+          <input id="date" name="date" type="text" placeholder="DD">
+        </div>
+        <label for="year">Birthday</label>
+      </div>
+
+    </div>
+  </div>
+</form>
+{% endblock %}
