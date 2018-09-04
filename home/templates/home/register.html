@@ -1,11 +1,14 @@
 {% extends "shared/base.html" %}
 
+{% load static %}
+
+
 {% block content %}
 <h1>Register for the Study</h1>
 <p>
-  To register for the USC face study you will be required to provide your full name and your email.
+  To register for the USC face study you will be required to provide your full name, email, age, and sex.
   Once you've registered and confirmed your email you'll be able to start taking the tests.
-  We'll send instructions on how to view your results to the email you provide once you've finished.
+  When you're done, we'll send your results to the email you provide.
 </p>
 <br>
 <form id="register">
@@ -33,8 +36,18 @@
         </div>
         <label for="year">Birthday</label>
       </div>
-
+      <div id="sex">
+        <div class="sex">
+          <input id="male" type="radio" name="sex" value="0"> Male
+          <input id="female" type="radio" name="sex" value="1"> Female
+        </div>
+        <label for="sex">Sex</label>
+      </div>
     </div>
   </div>
+  <div class="buttons">
+    <button id="submit" type="submit" disabled>Submit</button>
+  </div>
 </form>
+<script type="text/javascript" src="{% static "js/forms/register.js" %}"></script>
 {% endblock %}

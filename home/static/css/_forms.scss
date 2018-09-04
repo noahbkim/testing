@@ -1,3 +1,5 @@
+@import 'theme';
+
 $padding: 16px;
 
 form {
@@ -15,15 +17,33 @@ input {
   font-weight: inherit;
 }
 
-input[type=radio] {
+input[type="radio"] {
   width: auto;
 }
 
 label {
   display: block;
-  color: gray;
+  color: #666;
   font-size: 14px;
   margin-top: 2px;
+}
+
+button {
+  color: $red;
+  border: none;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+button[disabled=disabled], button:disabled {
+  color: gray;
+}
+
+.invalid {
+  border-color: $red;
 }
 
 .date {
@@ -57,9 +77,23 @@ label {
       flex-grow: 1;
     }
 
-    #female {
-      margin-left: 12px;
+    #sex {
+      padding-left: 16px;
+      display: block;
+
+      #female {
+        margin-left: 8px;
+      }
+
+      .sex {
+        padding-bottom: 0.45em;
+      }
     }
+  }
+
+  .buttons {
+    text-align: center;
+    margin-top: 2rem;
   }
 
   & > div {
