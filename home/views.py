@@ -11,6 +11,10 @@ def register(request):
     """Register a subject for testing."""
 
     if request.method == "POST":
+        
+
+
+
         return render(request, "home/done.html")
 
     return render(request, "home/register.html")

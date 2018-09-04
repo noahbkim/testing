@@ -10,8 +10,12 @@
   Once you've registered and confirmed your email you'll be able to start taking the tests.
   When you're done, we'll send your results to the email you provide.
 </p>
+<p>
+  Note that passwords must be at least eight characters.
+</p>
 <br>
-<form id="register">
+<form id="register" method="post">
+  {% csrf_token %}
   <div id="name">
     <div class="half">
       <input id="first_name" name="first_name" type="text" placeholder="First">
@@ -43,6 +47,16 @@
         </div>
         <label for="sex">Sex</label>
       </div>
+    </div>
+  </div>
+  <div id="passwords">
+    <div class="half">
+      <input id="password1" name="password1" type="password" placeholder="Secret">
+      <label for="password1">Password</label>
+    </div>
+    <div class="half">
+      <input id="password2" name="password2" type="password" placeholder="Secret">
+      <label for="password2">Confirm password</label>
     </div>
   </div>
   <div class="buttons">

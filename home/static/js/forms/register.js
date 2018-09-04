@@ -3,7 +3,9 @@
 // List all the form elements
 const elements = {
   first_name: null, last_name: null,
-  email: null, year: null, month: null, date: null, male: null, female: null};
+  email: null, year: null, month: null, date: null, male: null, female: null,
+  password1: null, password2: null
+};
 
 // Create a list for all currently invalid elements
 const invalid = new Set();
@@ -53,6 +55,9 @@ listen(elements.email, INPUTS, check(element => /^[^@]+@[^.]+\..+$/.test(element
 listen(elements.year, INPUTS, numeric);
 listen(elements.month, INPUTS, numeric);
 listen(elements.date, INPUTS, numeric);
+listen(elements.password1, INPUTS, check(element => element.value.length >= 8));
+listen(elements.password2, INPUTS, check(element => element.value === elements.password1.value));
+
 
 
 // Do special checking for the radio selection
