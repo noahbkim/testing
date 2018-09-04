@@ -62,19 +62,6 @@ button[disabled=disabled], button:disabled {
   }
 }
 
-.hint {
-  padding-top: 8px;
-  color: #666;
-
-  span {
-    display: block;
-  }
-
-  ul {
-    margin-top: 8px;
-  }
-}
-
 #register {
 
   #name, #about, #age-sex, #passwords {

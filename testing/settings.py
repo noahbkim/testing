@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# We use this for the confirmation email
+URL = 'http://localhost:8000'
+
 
 # Application definition
 
@@ -131,3 +134,9 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'sass_processor.finders.CssFinder',
 ]
+
+# Set the email backend to just print out emails for debug
+# https://stackoverflow.com/questions/4642011/test-sending-email-without-email-server
+
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

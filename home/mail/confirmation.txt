@@ -1,0 +1,5 @@
+{name},
+
+Thank you for registering with the USC Face Study. Please go to {url} to confirm your account!
+
+Once you've confirmed your account you'll be able to start taking the tests.

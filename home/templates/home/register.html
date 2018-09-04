@@ -10,40 +10,36 @@
   Once you've registered and confirmed your email you'll be able to start taking the tests.
   When you're done, we'll send your results to the email you provide.
 </p>
-<p>
-  Note that passwords must be at least eight characters.
-</p>
+{% if errors %}
+<p class="red">Error submitting form: {{ errors }}</p>
+{% endif %}
 <br>
-<form id="register" method="post">
+<form id="register" method="post" action="#">
   {% csrf_token %}
   <div id="name">
     <div class="half">
-      <input id="first_name" name="first_name" type="text" placeholder="First">
+      <input id="first_name" name="first_name" type="text" placeholder="First" value="{{ form.first_name.value|default_if_none:"" }}">
       <label for="first_name">First name</label>
     </div>
     <div class="half">
-      <input id="last_name" name="last_name" type="text" placeholder="Last">
+      <input id="last_name" name="last_name" type="text" placeholder="Last" value="{{ form.last_name.value|default_if_none:"" }}">
       <label for="last_name">Last name</label>
     </div>
   </div>
   <div id="about">
     <div class="half">
-      <input id="email" name="email" type="text" placeholder="me@example.com">
+      <input id="email" name="email" type="text" placeholder="me@example.com" value="{{ form.email.value|default_if_none:"" }}">
       <label for="email">Email</label>
     </div>
     <div id="age-sex" class="half">
-      <div id="age">
-        <div class="date">
-          <input id="year" name="year" type="text" placeholder="YYYY">
-          <input id="month" name="month" type="text" placeholder="MM">
-          <input id="date" name="date" type="text" placeholder="DD">
-        </div>
-        <label for="year">Birthday</label>
+      <div>
+        <input id="age" name="age" type="text" placeholder="Years" value="{{ form.age.value|default_if_none:"" }}">
+        <label for="age">Age</label>
       </div>
       <div id="sex">
         <div class="sex">
-          <input id="male" type="radio" name="sex" value="0"> Male
-          <input id="female" type="radio" name="sex" value="1"> Female
+          <input id="male" type="radio" name="sex" value="0" {% if form.sex.value == "0" %}checked{% endif %}> Male
+          <input id="female" type="radio" name="sex" value="1" {% if form.sex.value == "1" %}checked{% endif %}> Female
         </div>
         <label for="sex">Sex</label>
       </div>
@@ -52,7 +48,7 @@
   <div id="passwords">
     <div class="half">
       <input id="password1" name="password1" type="password" placeholder="Secret">
-      <label for="password1">Password</label>
+      <label for="password1">Password of at least eight characters</label>
     </div>
     <div class="half">
       <input id="password2" name="password2" type="password" placeholder="Secret">

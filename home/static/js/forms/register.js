@@ -3,7 +3,7 @@
 // List all the form elements
 const elements = {
   first_name: null, last_name: null,
-  email: null, year: null, month: null, date: null, male: null, female: null,
+  email: null, age: null, male: null, female: null,
   password1: null, password2: null
 };
 
@@ -25,11 +25,11 @@ function update() {
 
 // Create a check function generator based on element value
 function check(condition) {
-  return function(event) {
+  return function(event, ignore) {  // Use ignore flag to only do validation
     if (condition(event.target)) {
       event.target.classList.remove("invalid");
       invalid.delete(event.target);
-    } else {
+    } else if (ignore !== true) {
       event.target.classList.add("invalid");
       invalid.add(event.target);
     }
@@ -42,6 +42,7 @@ function check(condition) {
 function listen(element, events, callback) {
   for (let event of events)
     element.addEventListener(event, callback);
+  callback({target: element}, true); // Also check starting conditions
 }
 
 
@@ -49,22 +50,22 @@ function listen(element, events, callback) {
 const INPUTS = ["focus", "input"];
 const filled = check(element => element.value !== "");
 const numeric = check(element => element.value !== "" && /^\d+$/.test(element.value));
+
 listen(elements.first_name, INPUTS, filled);
 listen(elements.last_name, INPUTS, filled);
 listen(elements.email, INPUTS, check(element => /^[^@]+@[^.]+\..+$/.test(element.value)));
-listen(elements.year, INPUTS, numeric);
-listen(elements.month, INPUTS, numeric);
-listen(elements.date, INPUTS, numeric);
+listen(elements.age, INPUTS, numeric);
 listen(elements.password1, INPUTS, check(element => element.value.length >= 8));
-listen(elements.password2, INPUTS, check(element => element.value === elements.password1.value));
+listen(elements.password2, INPUTS, check(element => element.value === elements.password1.value && element.value !== ""));
 
 
 
 // Do special checking for the radio selection
 function checkSex() {
-  if (!elements.male.checked && !elements.female.checked)  invalid.add(elements.male);
+  if (!elements.male.checked && !elements.female.checked) invalid.add(elements.male);
   else invalid.delete(elements.male);
   update();
 }
-elements.female.addEventListener("click", checkSex);
-elements.male.addEventListener("click", checkSex);
+
+listen(elements.female, ["change"], checkSex);
+listen(elements.male, ["change"], checkSex);
