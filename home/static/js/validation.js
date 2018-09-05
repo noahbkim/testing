@@ -25,7 +25,7 @@ class Validator extends PolyfillEventTarget {
     super();
     this.invalid = new Set();
     for (let element of elements)
-      this.invalid.add(element);
+      this.invalid.add(element.name);
   }
 
   /** Generate a callback that validates an event target.
@@ -45,10 +45,10 @@ class Validator extends PolyfillEventTarget {
     return (event, ignore) => {  // Use ignore flag to only do validation
       if (condition(event.target)) {
         if (valid) valid(event.target);
-        this.invalid.delete(event.target);
+        this.invalid.delete(event.target.name);
       } else if (ignore !== true) {
         if (invalid) invalid(event.target);
-        this.invalid.add(event.target);
+        this.invalid.add(event.target.name);
       }
       this.emit("validate", this.invalid.size === 0);
     }
