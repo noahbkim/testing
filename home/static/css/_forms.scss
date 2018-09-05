@@ -62,13 +62,18 @@ button[disabled=disabled], button:disabled {
   }
 }
 
-#register {
+.halves {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
-  #name, #about, #age-sex, #passwords {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
+.half {
+  width: calc(50% - #{$padding} / 2);
+}
+
+
+#register {
   
   #age-sex {
     align-items: flex-end;
@@ -104,7 +109,7 @@ button[disabled=disabled], button:disabled {
     padding-bottom: 12px;
   }
 
-  .half {
-    width: calc(50% - #{$padding} / 2);
-  }
+}
+
+#login {
 }

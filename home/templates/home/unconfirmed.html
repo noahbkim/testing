@@ -1,0 +1,9 @@
+{% extends "shared/base.html" %}
+
+{% block content %}
+<h1>You must confirm your email before taking the surveys!</h1>
+<p>
+  A confirmation URL has been sent to <span class="red">{{ email }}</span>.
+  Click on the link or paste it into your browser's search bar to confirm your account.
+</p>
+{% endblock %}

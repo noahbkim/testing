@@ -25,7 +25,7 @@
         <span><a>Logout</a></span>
         {% else %}
         <span><a href="{% url "home:register" %}">Register</a></span>
-        <span><a>Login</a></span>
+        <span><a href="{% url "home:login" %}">Login</a></span>
         {% endif %}
       </div>
     </div>

@@ -65,3 +65,9 @@ def register(request):
 
     # Render the page with a blank form so the renderer isn't sad
     return render(request, "home/register.html", {"form": forms.SubjectForm()})
+
+
+def login(request):
+    """Standard login page."""
+
+    return render(request, "home/login.html")

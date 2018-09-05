@@ -1,71 +1,38 @@
 /** Validation for the registration page. */
 
 // List all the form elements
-const elements = {
+const elements = find({
   first_name: null, last_name: null,
   email: null, age: null, male: null, female: null,
   password1: null, password2: null
-};
+});
 
-// Create a list for all currently invalid elements
-const invalid = new Set();
-
-// Populate the lists but only use remove redundancy in sex elements
-for (let field of Object.keys(elements))
-  invalid.add(elements[field] = document.getElementById(field));  // Trying to make this as unreadable as possible
-invalid.delete(elements.female);
-
+// Create a validator
+const validator = new Validator(Object.values(elements));
 
 // Create a check for whether the update function should be disabled
 const submit = document.getElementById("submit");
-function update() {
-  submit.disabled = (invalid.size > 0);
-}
-
-
-// Create a check function generator based on element value
-function check(condition) {
-  return function(event, ignore) {  // Use ignore flag to only do validation
-    if (condition(event.target)) {
-      event.target.classList.remove("invalid");
-      invalid.delete(event.target);
-    } else if (ignore !== true) {
-      event.target.classList.add("invalid");
-      invalid.add(event.target);
-    }
-    update();
-  }
-}  // This is a pretty sick idea though
-
-
-// Make a convenience wrapper for event listener for multiple events
-function listen(element, events, callback) {
-  for (let event of events)
-    element.addEventListener(event, callback);
-  callback({target: element}, true); // Also check starting conditions
-}
-
+validator.addEventListener("validate", valid => {
+  console.log("validate", valid);
+  submit.disabled = !valid
+});
 
 // Listen to all our elements
 const INPUTS = ["focus", "input"];
-const filled = check(element => element.value !== "");
-const numeric = check(element => element.value !== "" && /^\d+$/.test(element.value));
+const filled = validator.check(element => element.value !== "");
+const numeric = validator.check(element => element.value !== "" && /^\d+$/.test(element.value));
 
-listen(elements.first_name, INPUTS, filled);
-listen(elements.last_name, INPUTS, filled);
-listen(elements.email, INPUTS, check(element => /^[^@]+@[^.]+\..+$/.test(element.value)));
-listen(elements.age, INPUTS, numeric);
-listen(elements.password1, INPUTS, check(element => element.value.length >= 8));
-listen(elements.password2, INPUTS, check(element => element.value === elements.password1.value && element.value !== ""));
-
-
+validator.listen(elements.first_name, INPUTS, filled);
+validator.listen(elements.last_name, INPUTS, filled);
+validator.listen(elements.email, INPUTS,
+  validator.check(element => /^[^@]+@[^.]+\..+$/.test(element.value)));
+validator.listen(elements.age, INPUTS, numeric);
+validator.listen(elements.password1, INPUTS,
+  validator.check(element => element.value.length >= 8));
+validator.listen(elements.password2, INPUTS,
+  validator.check(element => element.value === elements.password1.value && element.value !== ""));
 
 // Do special checking for the radio selection
-function checkSex() {
-  if (!elements.male.checked && !elements.female.checked) invalid.add(elements.male);
-  else invalid.delete(elements.male);
-  update();
-}
-
-listen(elements.female, ["change"], checkSex);
-listen(elements.male, ["change"], checkSex);
+const selected = validator.check(() => elements.male.checked || elements.female.checked, null, null);
+validator.listen(elements.female, ["change"], selected);
+validator.listen(elements.male, ["change"], selected);
