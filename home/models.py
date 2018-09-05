@@ -26,7 +26,7 @@ class Subject(models.Model):
     """A profile linked to users who register as subjects."""
 
     # Link to the user
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="subject")
 
     # Track a couple other details
     semester = models.CharField(max_length=5)  # Formatted YYYYS where S can be 1 or 2

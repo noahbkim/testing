@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib import auth
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 
@@ -69,5 +70,15 @@ def register(request):
 
 def login(request):
     """Standard login page."""
+
+    if request.method == "POST":
+
+        # Check if the user is valid
+        user = auth.authenticate(username=request.POST["email"], password=request.POST["password"])
+        if user is None:
+            return render(request, "home/login.html", {"error": "invalid credentials!"})
+        if hasattr(user, "subject") and not user.subject.confirmed:
+            return render(request, "home/unconfirmed.html", {"email": user.email})
+        auth.login(request, user)
 
     return render(request, "home/login.html")

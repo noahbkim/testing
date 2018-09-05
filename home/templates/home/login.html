@@ -8,14 +8,15 @@
   Sign into your account take the surveys.
   If you haven't yet confirmed your email, you will be prompted to do so.
 </p>
-<form name="login">
+<form name="login" method="post" action="">
+  {% csrf_token %}
   <div class="halves">
     <div class="half">
       <input id="email" name="email" type="text" placeholder="me@example.com">
       <label for="email">Email</label>
     </div>
     <div class="half">
-      <input id="password" name="password" type="password" placeholder="secret">
+      <input id="password" name="password" type="password" placeholder="A Secret">
       <label for="password">Password</label>
     </div>
   </div>
