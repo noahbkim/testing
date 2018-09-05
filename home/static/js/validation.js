@@ -18,9 +18,28 @@ function find(elements) {
 
 }
 
+/** Listen for events on an element. */
+function listen(element, events, callback) {
+  for (let event of events)
+    element.addEventListener(event, callback);
+  callback({target: element}, true);
+}
 
+
+/** The validator keeps track of all form names that are invalid.
+ *
+ * The validator essential keeps a hash set of the names of the form
+ * elements and provides callbacks to be bound to update events that
+ * either add or remove elements from the invalid set. It also emits
+ * events when it's valid or invalid.
+ */
 class Validator extends PolyfillEventTarget {
 
+  /** Create a set and add all elements.
+   *
+   * We do the element forl oop because iterable set initialization
+   * isn't supported everywhere.
+   */
   constructor(elements) {
     super();
     this.invalid = new Set();
@@ -52,13 +71,6 @@ class Validator extends PolyfillEventTarget {
       }
       this.emit("validate", this.invalid.size === 0);
     }
-  }
-
-  /** Listen for events on an element. */
-  listen(element, events, callback) {
-    for (let event of events)
-      element.addEventListener(event, callback);
-    callback({target: element}, true);
   }
 
 }

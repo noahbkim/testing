@@ -1,5 +1,7 @@
 {% extends "shared/base.html" %}
 
+{% load static %}
+
 {% block content %}
 <div id="login">
   <h2>Log in</h2>
@@ -18,4 +20,7 @@
     </div>
   </form>
 </div>
+<script type="text/javascript" src="{% static "js/event.js" %}"></script>
+<script type="text/javascript" src="{% static "js/validation.js" %}"></script>
+<script type="text/javascript" src="{% static "js/forms/login.js" %}"></script>
 {% endblock %}

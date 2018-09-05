@@ -20,19 +20,19 @@ const filled = validator.check(element => element.value !== "");
 const numeric = validator.check(element => element.value !== "" && /^\d+$/.test(element.value));
 const password2 = validator.check(element => element.value === elements.password1.value && element.value !== "");
 
-validator.listen(elements.first_name, INPUTS, filled);
-validator.listen(elements.last_name, INPUTS, filled);
-validator.listen(elements.email, INPUTS,
+listen(elements.first_name, INPUTS, filled);
+listen(elements.last_name, INPUTS, filled);
+listen(elements.email, INPUTS,
   validator.check(element => /^[^@]+@[^.]+\..+$/.test(element.value)));
-validator.listen(elements.age, INPUTS, numeric);
-validator.listen(elements.password1, INPUTS,
+listen(elements.age, INPUTS, numeric);
+listen(elements.password1, INPUTS,
   validator.check(element => element.value.length >= 8));
-validator.listen(elements.password2, INPUTS, password2);
+listen(elements.password2, INPUTS, password2);
 
 // Update the second password validation when the first changes
 elements.password1.addEventListener("input", () => password2({target: elements.password2}));
 
 // Do special checking for the radio selection
 const selected = validator.check(() => elements.male.checked || elements.female.checked, null, null);
-validator.listen(elements.female, ["change"], selected);
-validator.listen(elements.male, ["change"], selected);
+listen(elements.female, ["change"], selected);
+listen(elements.male, ["change"], selected);
