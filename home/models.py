@@ -21,6 +21,8 @@ class PROSOPAGNOSIA(IntEnum):
 
 HEX = "0123456789abcdef"
 
+TOKEN_LENGTH = 48
+
 
 class Subject(models.Model):
     """A profile linked to users who register as subjects."""
@@ -37,7 +39,7 @@ class Subject(models.Model):
     prosopagnosia = models.PositiveSmallIntegerField(choices=((item, item.value) for item in PROSOPAGNOSIA), null=True)
 
     # Email confirmation
-    token = models.CharField(max_length=24, unique=True)
+    token = models.CharField(max_length=TOKEN_LENGTH, unique=True)
     confirmed = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
@@ -47,7 +49,7 @@ class Subject(models.Model):
         if self.pk is None:
             token = None
             while token is None:
-                test = "".join(random.choice(HEX) for _ in range(24))
+                test = "".join(random.choice(HEX) for _ in range(TOKEN_LENGTH))
                 if not Subject.objects.filter(token=test).exists():
                     token = test
             self.token = token

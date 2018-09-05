@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
@@ -68,6 +68,15 @@ def register(request):
     return render(request, "home/register.html", {"form": forms.SubjectForm()})
 
 
+def confirm(request, token):
+    """Confirm a user based on the code they've been sent via email."""
+
+    subject = get_object_or_404(models.Subject, token=token)
+    subject.confirmed = True
+    subject.save()
+    return render(request, "home/confirmed.html")
+
+
 def login(request):
     """Standard login page."""
 
@@ -80,5 +89,13 @@ def login(request):
         if hasattr(user, "subject") and not user.subject.confirmed:
             return render(request, "home/unconfirmed.html", {"email": user.email})
         auth.login(request, user)
+        return redirect("home:index")
 
     return render(request, "home/login.html")
+
+
+def logout(request):
+    """Logout the user."""
+
+    auth.logout(request)
+    return redirect("home:index")
