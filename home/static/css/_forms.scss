@@ -72,6 +72,11 @@ button[disabled=disabled], button:disabled {
   width: calc(50% - #{$padding} / 2);
 }
 
+.buttons {
+  text-align: center;
+  margin-top: 2rem;
+}
+
 
 #register {
   
@@ -98,11 +103,6 @@ button[disabled=disabled], button:disabled {
 
   #passwords {
     margin-top: 1rem;
-  }
-
-  .buttons {
-    text-align: center;
-    margin-top: 2rem;
   }
 
   & > div {

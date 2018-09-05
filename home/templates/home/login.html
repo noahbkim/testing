@@ -3,13 +3,13 @@
 {% load static %}
 
 {% block content %}
-<div id="login">
-  <h2>Log in</h2>
-  <p>
-    Sign into your account take the surveys.
-    If you haven't yet confirmed your email, you will be prompted to do so.
-  </p>
-  <form name="login" class="halves">
+<h2>Log in</h2>
+<p>
+  Sign into your account take the surveys.
+  If you haven't yet confirmed your email, you will be prompted to do so.
+</p>
+<form name="login">
+  <div class="halves">
     <div class="half">
       <input id="email" name="email" type="text" placeholder="me@example.com">
       <label for="email">Email</label>
@@ -18,8 +18,11 @@
       <input id="password" name="password" type="password" placeholder="secret">
       <label for="password">Password</label>
     </div>
-  </form>
-</div>
+  </div>
+  <div class="buttons">
+    <button id="login" type="submit" disabled>Login</button>
+  </div>
+</form>
 <script type="text/javascript" src="{% static "js/event.js" %}"></script>
 <script type="text/javascript" src="{% static "js/validation.js" %}"></script>
 <script type="text/javascript" src="{% static "js/forms/login.js" %}"></script>
