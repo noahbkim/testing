@@ -127,6 +127,11 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
+# Set directory for tests
+
+TESTS_ROOT = os.path.join(BASE_DIR, 'tests')
+
+
 # Static file finders
 
 STATICFILES_FINDERS = [
