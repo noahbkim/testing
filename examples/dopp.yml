@@ -1,0 +1,17 @@
+# Standard front matter for tests
+name: dopp
+title: Doppelgänger Discrimination Test
+author: USC Image Understanding Lab
+
+# Templates allow you to specify preset options for slides
+templates:
+  survey:
+    instructions: >
+      Very unfamiliar &nbsp;&nbsp; 1 2 3 4 5 &nbsp;&nbsp; Very familiar
+
+# Slides are the actual displays subjects are shown
+slides:
+
+  - Tom Cruise
+    template: survey
+    stimuli: text://Tom Cruise
