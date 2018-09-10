@@ -20,7 +20,7 @@
         <span><a>Dashboard</a></span>
         <span><a href="{% url "home:logout" %}">Logout</a></span>
         {% elif user.is_authenticated%}
-        <span><a>Tests</a></span>
+        <span><a href="{% url "tests:index" %}">Tests</a></span>
         <span><a>Account</a></span>
         <span><a href="{% url "home:logout" %}">Logout</a></span>
         {% else %}

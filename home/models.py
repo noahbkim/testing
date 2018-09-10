@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from enum import Enum, IntEnum
 import random
+import hashlib
 
 
 class SEX(Enum):

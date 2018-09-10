@@ -35,6 +35,7 @@ URL = 'http://localhost:8000'
 
 INSTALLED_APPS = [
     'home',
+    'tests',
     'sass_processor',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -129,7 +130,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Set directory for tests
 
-TESTS_ROOT = os.path.join(BASE_DIR, 'tests')
+TESTS_ROOT = 'tests'
 
 
 # Static file finders
