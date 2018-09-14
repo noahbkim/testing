@@ -1,17 +1,63 @@
-# Standard front matter for tests
+# Standard front matter for tests. Name must be less than 8 characters
+# and consist of letters, digits, and underscores. The title is what's
+# shown to users and reviewers on the frontend.
 name: dopp
 title: Doppelgänger Discrimination Test
 author: USC Image Understanding Lab
 
-# Templates allow you to specify preset options for slides
+# Templates allow you to specify preset options for slides.
 templates:
+
+  # Create a new template for a slide. This one allows users to rate
+  # their familiarity with the named celebrity on a scale of 1 to 10.
   survey:
-    instructions: >
-      Very unfamiliar &nbsp;&nbsp; 1 2 3 4 5 &nbsp;&nbsp; Very familiar
+
+    # Inputs are the exact key codes used by HTML/JavaScript that are
+    # accepted as a response to the stimuli. They can be listed or
+    # provided as a map from the key code to the value that should be
+    # stored as the response.
+    inputs:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+
+    # There are two options for storing results. The first is value,
+    # which stores the input if options are provided as a list. If the
+    # inputs are mapped, the value is looked up and stored. The second
+    # is correct, which is demonstrated below.
+    store: value
+
+    # Instructions are shown below the stimuli on all slides.
+    instructions: Very unfamiliar - 1 2 3 4 5 - Very familiar
+
+  # This template will be used for slides where the user has to choose
+  # which picture is of the real celebrity.
+  choice:
+
+    # Left and Right correspond to the left and right arrow keys.
+    inputs:
+      - Left
+      - Right
+
+    # Storing correct either returns true or false based on whether
+    # what the user answers matches the options specified in the
+    # correct field of the slide, as demonstrated below.
+    store: correct
+
+    instructions: Use left and right to select the celebrity
 
 # Slides are the actual displays subjects are shown
 slides:
 
-  - Tom Cruise
+  - Tom Cruise Survey
     template: survey
-    stimuli: text://Tom Cruise
+    stimuli: Tom Cruise
+
+  - Tom Cruise Choice
+    template: choice
+    correct: Left
+    stimuli:
+      - assets/tom_cruise/correct.png
+      - assets/tom_cruise/incorrect.png
