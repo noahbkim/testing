@@ -1,18 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
-from enum import Enum, IntEnum
+import enum
 import random
-import hashlib
 
 
-class SEX(Enum):
+class SEX(enum.Enum):
     """Sex field options. Boolean is space efficient."""
 
     MALE = False
     FEMALE = True
 
 
-class PROSOPAGNOSIA(IntEnum):
+class PROSOPAGNOSIA(enum.IntEnum):
     """Prosopagnosia classifications. Average means has prosopagnosia."""
 
     CONTROL = 0
@@ -35,9 +34,6 @@ class Subject(models.Model):
     semester = models.CharField(max_length=5)  # Formatted YYYYS where S can be 1 or 2
     age = models.IntegerField()
     sex = models.BooleanField()
-
-    # Whether they have prosopagnosia
-    prosopagnosia = models.PositiveSmallIntegerField(choices=((item, item.value) for item in PROSOPAGNOSIA), null=True)
 
     # Email confirmation
     token = models.CharField(max_length=TOKEN_LENGTH, unique=True)

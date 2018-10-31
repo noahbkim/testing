@@ -1,5 +1,13 @@
 {% extends "shared/base.html" %}
 
+{% load sass_tags %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% sass_src "css/tests.scss" %}">
+<script type="text/javascript" src="{% static "js/tests.js" %}"></script>
+{% endblock %}
+
 {% block navigation %}{% endblock %}
 
 {% block content %}

@@ -39,38 +39,3 @@ class Result(models.Model):
 
     # When the test was taken
     date_taken = models.DateTimeField(default=timezone.now)
-
-
-"""Example test file
-
-meta:
-  name: dopp
-  title: Doppelganger Accuracy Test
-  templates: 
-    rate: templates/rate.html
-    
-slides:
-- tom_cruise
-  template: rate
-  image1: test/tom_cruise.png
-  image2: test/not_tom_cruise.png
-  correct: 
-  inputs: 
-    - Left
-    - Right
-    
-rate.html:
-<styles>
-    ....
-</styles>
-<img src="%image2%">
-<img src="%image2%">
-
-
-Use an actual IFrame to embed each new test, let the IFrame redirect itself.
-Serve the pages to randomly generated URL which is requested by the client and posted to the IFrame.
-Each test page is provided the arguments from the URL, namely the slide name.
-The information is taken from an in-memory copy of the imported test and the page is generated.
-
-Need to test performance!
-"""
