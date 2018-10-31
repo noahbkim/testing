@@ -12,3 +12,5 @@ To keep things manageable, I'm maintaining a linear to do list.
 - [ ] Create the test framework in SQL
 - [ ] Create API endpoints for single page clients to run tests
 - [ ] Finish the testing suite
+- [ ] Add separation layer to conform to HIPAA
+- [ ] Write up that last bit
