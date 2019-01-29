@@ -7,5 +7,6 @@ app_name = "tests"
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("<str:name>", views.test, name="test")
+    path("results", views.results, name="results"),
+    path("test/<str:name>", views.test, name="test")
 ]

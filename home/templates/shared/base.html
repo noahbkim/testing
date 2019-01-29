@@ -12,15 +12,18 @@
   <body>
     {% block navigation %}
     <div id="navigation">
-      <span class="red"><a href="{% url "home:index" %}">USC Face Study</a></span>
-      <span>About</span>
+      <span class="red"><a href="{% url "home:index" %}">Image Understanding Lab</a></span>
+      <span><a href="{% url "home:about" %}">About</a></span>
       <span>Contact</span>
+      {% if user.is_authenticated %}
+      <span><a href="{% url "tests:index" %}">Tasks</a></span>
+      <span><a href="{% url "tests:results" %}">Results</a></span>
+      {% endif %}
       <div class="right">
         {% if user.is_staff %}
         <span><a>Dashboard</a></span>
         <span><a href="{% url "home:logout" %}">Logout</a></span>
-        {% elif user.is_authenticated%}
-        <span><a href="{% url "tests:index" %}">Tests</a></span>
+        {% elif user.is_authenticated %}
         <span><a>Account</a></span>
         <span><a href="{% url "home:logout" %}">Logout</a></span>
         {% else %}

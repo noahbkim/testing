@@ -8,5 +8,10 @@ def index(request):
 
 
 @login_required
+def results(request):
+    return render(request, "tests/results.html")
+
+
+@login_required
 def test(request, name):
     """"""
