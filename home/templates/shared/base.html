@@ -14,7 +14,8 @@
     <div id="navigation">
       <span class="red"><a href="{% url "home:index" %}">Image Understanding Lab</a></span>
       <span><a href="{% url "home:about" %}">About</a></span>
-      <span>Contact</span>
+      <span><a href="{% url "home:instructions" %}">Instructions</a></span>
+      <span><a href="{% url "home:contact" %}">Contact</a></span>
       {% if user.is_authenticated %}
       <span><a href="{% url "tests:index" %}">Tasks</a></span>
       <span><a href="{% url "tests:results" %}">Results</a></span>

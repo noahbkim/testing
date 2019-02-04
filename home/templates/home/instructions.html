@@ -1,0 +1,26 @@
+{% extends "shared/base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+<h2>Test Instructions</h2>
+
+There are three different trial types, X blocks with Y trials in each block, only one trial type per block.
+
+<div style="display: flex; margin-top: 20px;">
+  <div style="width: 33%; text-align: center;">
+    Perception<br>
+    <img src="{% static "img/shibe1.bmp" %}" alt="Perception test" height="150px">
+  </div>
+  <div style="width: 33%; text-align: center;">
+    Memory<br>
+    <img src="{% static "img/shibe2.bmp" %}" alt="Memory test" height="150px">
+  </div>
+  <div style="width: 33%; text-align: center;">
+    Orientation<br>
+    <img src="{% static "img/shibe3.bmp" %}" alt="Orientation test" height="150px">
+  </div>
+</div>
+
+{% endblock %}

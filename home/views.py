@@ -24,6 +24,14 @@ def about(request):
     return render(request, "home/about.html")
 
 
+def instructions(request):
+    return render(request, "home/instructions.html")
+
+
+def contact(request):
+    return render(request, "home/contact.html")
+
+
 def register(request):
     """Register a subject for testing."""
 
