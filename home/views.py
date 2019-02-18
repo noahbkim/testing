@@ -15,8 +15,6 @@ with open(os.path.join(os.path.dirname(__file__), "mail", "confirmation.txt")) a
 
 
 def index(request):
-    """Render the home page of the website."""
-
     return render(request, "home/index.html")
 
 
@@ -98,9 +96,11 @@ def login(request):
         user = auth.authenticate(username=request.POST["email"], password=request.POST["password"])
         if user is None:
             return render(request, "home/login.html", {"error": "invalid credentials!"})
-        if hasattr(user, "subject") and not user.subject.confirmed:
+        subject = models.Subject.objects.filter(user=user).first()
+        if subject is not None and not subject.confirmed:
             return render(request, "home/unconfirmed.html", {"email": user.email})
         auth.login(request, user)
+
         return redirect("home:index")
 
     return render(request, "home/login.html")

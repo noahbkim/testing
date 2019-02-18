@@ -6,6 +6,7 @@ from django.utils import timezone
 import string
 
 from testing import settings
+from privacy.models import IdentifierField
 
 
 def validate_alphanumeric(test):
@@ -31,8 +32,8 @@ class Test(models.Model):
 class Result(models.Model):
     """The result of a test taken by a single subject."""
 
-    # The user who took the test
-    user = models.ForeignKey(User, related_name="results", on_delete=models.CASCADE)
+    # A unique identifier the only the corresponding can use to isolate this result
+    identifier = IdentifierField()
 
     # The test that was taken
     test = models.ForeignKey(Test, related_name="results", on_delete=models.CASCADE)
